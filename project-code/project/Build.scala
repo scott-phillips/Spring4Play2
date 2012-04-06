@@ -8,7 +8,9 @@ object ApplicationBuild extends Build {
     val appVersion      = "1.0-SNAPSHOT"
 
     val appDependencies = Seq(
-      // Add your project dependencies here,
+            "org.springframework"    %    "spring-context"    %    "3.0.7.RELEASE",
+            "org.springframework"    %    "spring-core"       %    "3.0.7.RELEASE",
+            "org.springframework"    %    "spring-beans"      %    "3.0.7.RELEASE"
     )
 
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = JAVA).settings(
