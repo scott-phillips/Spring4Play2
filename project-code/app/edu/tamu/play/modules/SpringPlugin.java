@@ -3,18 +3,15 @@ package edu.tamu.play.modules;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
-import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 import org.springframework.context.support.GenericApplicationContext;
 import org.xml.sax.InputSource;
 
-import play.Configuration;
 import play.Logger;
 import play.Play;
 import play.Plugin;
@@ -27,6 +24,7 @@ public class SpringPlugin extends Plugin  {
     private static final String SPRING_CONTEXT_PATH = "spring.context";
     private static final String SPRING_NAMESPACE_AWARE = "spring.namespace-aware";
     private static final String SPRING_ADD_PLAY_PROPERTIES = "spring.add-play-properties";
+
 
 
     /** The spring context available for anyone */
@@ -68,7 +66,7 @@ public class SpringPlugin extends Plugin  {
     	String contextPath = app.configuration().getString(SPRING_CONTEXT_PATH);
     	String namespaceAware = app.configuration().getString(SPRING_NAMESPACE_AWARE);
     	String addPlayProperties = app.configuration().getString(SPRING_ADD_PLAY_PROPERTIES);
-
+    	
     	URL url = null;
     	if (contextPath != null) {
     		url = app.classloader().getResource(contextPath);
@@ -90,6 +88,9 @@ public class SpringPlugin extends Plugin  {
                 }
                 xmlReader.setValidationMode(XmlBeanDefinitionReader.VALIDATION_NONE);
 
+                // 
+                // Load Play Configuration
+                //
                 if (!"false".equalsIgnoreCase(addPlayProperties)) {
                     Logger.debug("Adding PropertyPlaceholderConfigurer with Play properties");
                     
