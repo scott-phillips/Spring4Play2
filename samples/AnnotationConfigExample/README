@@ -1,6 +1,18 @@
-Sample Spring-based Play 2.0 Application
-========================================
+Annotation Configuration Example Play 2.0 Application
+=====================================================
 
-This application is bundled with the Play 2.0 plugin to manage spring configurations.
+This application shows an example of using the Spring framework with annotation-based configuration
+for injecting Spring dependencies. Earlier version of Play and the Spring Module required extra
+configuration for Spring's component scanning and annotation configuration. With the new version of
+Play 2.0 this is no longer required because behind the scenes the Play framework is not magically
+manipulating the classpath. To enable annotation configuration all you need to do is set up the
+appropriate spring context using the annotation-config and component-scan elements. Here's an
+example:
 
+>
+>    <context:annotation-config />
+>    <context:component-scan base-package="beans" />
+>
 
+With this configuration all the classes under the package "beans" will be scanned for their
+dependencies and loaded into the appliction's context.

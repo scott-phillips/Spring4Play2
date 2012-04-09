@@ -9,9 +9,7 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
 
-    <!-- A simple bean -->
-    <bean id="MyBean" class="beans.MyBean">
-        <property name="myProperty" value="My Property"/>
-    </bean>
+    <!-- A simple bean, with a simple name -->
+    <bean id="MyBean" class="beans.MyBean"/>
 
 </beans>

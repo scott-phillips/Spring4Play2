@@ -1,20 +1,24 @@
 package beans;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.NamedBean;
 import org.springframework.stereotype.Component;
 
-@Component
-public class MyBean {
-	
-	private AnotherBean autowired = null;
-	
-	@Autowired
-	public void setAutowiredBean(AnotherBean bean) {
-		this.autowired = bean;
+/**
+ * A simple named bean.
+ */
+
+@Component // Important for component scaning
+public class MyBean implements BeanNameAware, NamedBean {
+
+	private String name = null;
+
+	public void setBeanName(String name) {
+		this.name = name;
 	}
-	
-	public AnotherBean getAutowiredBean() {
-		return autowired;
+
+	public String getBeanName() {
+		return name;
 	}
 
 }

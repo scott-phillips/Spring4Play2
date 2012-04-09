@@ -69,14 +69,17 @@ public class SpringPlugin extends Plugin  {
     	
     	URL url = null;
     	if (contextPath != null) {
+    		Logger.debug("Loading application context: "+contextPath);
     		url = app.classloader().getResource(contextPath);
-    	} if (url == null) {
+    	} 
+    	if (url == null) {
+    		Logger.debug("Loading default application context: application-context.ml");
             url = app.classloader().getResource("application-context.xml");
         }
         if (url != null) {
             InputStream is = null;
             try {
-                Logger.debug("Starting Spring application context");
+                Logger.debug("Starting Spring application context from "+url.toExternalForm());
                 applicationContext = new GenericApplicationContext();
                 applicationContext.setClassLoader(Play.application().classloader());
                 XmlBeanDefinitionReader xmlReader = new XmlBeanDefinitionReader(applicationContext);

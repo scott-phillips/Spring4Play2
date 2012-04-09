@@ -1,6 +1,30 @@
-Sample Spring-based Play 2.0 Application
-========================================
+Basic Spring-based Example Play 2.0 Application
+===============================================
 
-This application is bundled with the Play 2.0 plugin to manage spring configurations.
+This application is a very simple spring-based application that obtains a named bean from spring
+and display's it's name. When this application is run you should see the output below. This beans
+that a Spring bean was instantiated and spring injected the name of the beans name.  
+
+>
+> MyBean.getBeanName() = MyBean
+>
+
+By default the plugin will always look at the "conf/applications-context.xml". However sometimes
+you want to override this behavior in these cases you should supply the following parameter in your
+application.conf:
+
+>
+> spring.context = another-application-context.xml
+>
+
+If you change the context to "conf/another-application-context.xml" as shown above the output of
+the application should change to what is shown below. This reflects the new name of the bean from
+the other application context.
+
+> 
+> MyBean.getBeanName() = Another_Name_For_My_Bean
+> 
+
+
 
 

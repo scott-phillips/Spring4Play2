@@ -1,6 +1,37 @@
-Sample Spring-based Play 2.0 Application
-========================================
+Controller Injection Example Play 2.0 Application
+=================================================
 
-This application is bundled with the Play 2.0 plugin to manage spring configurations.
+This application shows one pattern for enabling spring-managed controllers. This allows for
+dependencies to be directly injected into controller objects. Previous versions of the Play 
+framework did not allow dependencies to be injected into controllers because all controller methods
+were forced to be static. However that restriction is no longer present with the newest version of 
+the framework. 
+
+To enable spring-managed controllers for your application you will need to follow at least some
+kind of factory pattern. Either with an explicit controller factory or through a singleton
+pattern with static accessory method (i.e. getInstance()). This example project uses an explicit
+factory constructor which produces two spring-managed controllers for the application. The 
+
+When you use this pattern you routes file will look something like:
+> 
+> GET    /one     controllers.ControllerFactory.getControllerOne.index()
+> GET    /two     controllers.ControllerFactory.getControllerTwo.index()
+> 
+
+For example this application produces two controllers each when accessed display the name of a
+different bean that was injected based upon the application's context. Obviously you can shorten
+the names used to reduce the verbosity of the controller method signatures in the routes file.
+
+Here are the results of this application where each controller is injected with a different
+named bean:
+
+>
+> http://localhost:9000/one
+> ControllerOne: bean.getBeanName() = MyBean
+> 
+> http://localhost:9000/two
+> ControllerTwo: bean.getBeanName() = AnotherBean
+>
+
 
 

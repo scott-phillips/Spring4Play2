@@ -3,18 +3,24 @@ package controllers;
 import play.mvc.Controller;
 import play.mvc.Result;
 import edu.tamu.play.modules.Spring;
-import beans.MyBean;
+import beans.AutowiredBean;
+
+/**
+ * Display the name of the autowired bean's dependency that was injected via
+ * annotation-based configuration. *
+ */
 
 public class Application extends Controller {
 
 	public static Result index() {
 
-		MyBean myBean = Spring.getBeanOfType(MyBean.class);
+		AutowiredBean bean = Spring.getBeanOfType(AutowiredBean.class);
 
-		if (myBean == null)
+		if (bean == null)
 			notFound("Unable to load MyBean from the Spring Context.");
-		
-		return ok("MyBean.getAutowiredBean().getName() = "+myBean.getAutowiredBean().getName());
+
+		return ok("bean.getAutowiredProperty().getBeanName() = "
+				+ bean.getAutowiredProperty().getBeanName());
 	}
 
 }
