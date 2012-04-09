@@ -1,4 +1,4 @@
-package edu.tamu.play.modules;
+package play.modules.spring;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,13 +19,10 @@ import play.Application;
 
 public class SpringPlugin extends Plugin  {
 
-   
 	/** Configuration keys **/
     private static final String SPRING_CONTEXT_PATH = "spring.context";
     private static final String SPRING_NAMESPACE_AWARE = "spring.namespace-aware";
     private static final String SPRING_ADD_PLAY_PROPERTIES = "spring.add-play-properties";
-
-
 
     /** The spring context available for anyone */
     private Application app;

@@ -1,4 +1,4 @@
-package edu.tamu.play.modules;
+package play.modules.spring;
 
 import java.util.Map;
 import play.Play;

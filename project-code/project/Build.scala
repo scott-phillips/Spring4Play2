@@ -4,7 +4,7 @@ import PlayProject._
 
 object ApplicationBuild extends Build {
 
-    val appName         = "Spring4Play2"
+    val appName         = "spring"
     val appVersion      = "1.0-SNAPSHOT"
 
     val appDependencies = Seq(
@@ -14,7 +14,15 @@ object ApplicationBuild extends Build {
     )
 
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = JAVA).settings(
-      // Add your own project settings here      
+        organization := "play",
+        publishMavenStyle := true,
+        publishTo <<= (version) { version: String =>
+            val nexus = "https://maven.library.tamu.edu/content/repositories/"
+            if (version.trim.endsWith("SNAPSHOT")) 
+                Some("TAMU Snapshot Repository" at nexus + "snapshots/") 
+            else                                   
+                Some("TAMU Release Repository"  at nexus + "releases/")
+           },
+        credentials += Credentials(file(Path.userHome + "/.mavenCredentials"))
     )
-
 }

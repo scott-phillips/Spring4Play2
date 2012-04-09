@@ -1,6 +1,6 @@
 package controllers;
 
-import edu.tamu.play.modules.Spring;
+import play.modules.spring.Spring;
 
 /**
  * Produce Spring managed Controller objects with full dependencies.

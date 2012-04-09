@@ -2,7 +2,7 @@ package controllers;
 
 import play.mvc.Controller;
 import play.mvc.Result;
-import edu.tamu.play.modules.Spring;
+import play.modules.spring.Spring;
 import beans.AutowiredBean;
 
 /**

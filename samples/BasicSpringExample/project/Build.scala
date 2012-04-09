@@ -8,11 +8,12 @@ object ApplicationBuild extends Build {
     val appVersion      = "1.0-SNAPSHOT"
 
     val appDependencies = Seq(
-      "spring4play2" % "spring4play2_2.9.1" % "1.0-SNAPSHOT"
+      "play" % "spring_2.9.1" % "1.0-SNAPSHOT"
     )
 
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = JAVA).settings(
-        resolvers += "Local Play Repository" at "file://Users/aggiescott/Development/play/current/repository/local/"
+        resolvers += "TAMU Snapshot Repository" at "https://maven.library.tamu.edu/content/repositories/snapshots/"
     )
+
 
 }
