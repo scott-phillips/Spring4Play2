@@ -15,7 +15,7 @@ explicitly in your sbt build configuration.
 Add the dependency shown below on this module, along with the definition for TAMU's maven repository.
 
     val appDependencies = Seq(
-        "play" % "spring_2.9.1" % "1.1"
+        "play" % "spring_2.9.1" % "2.0"
     )
     
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = JAVA).settings(
@@ -24,7 +24,7 @@ Add the dependency shown below on this module, along with the definition for TAM
 
 ## Configuration ##
 
-This module is very simple to configure, simply place your Spring application context in
+This module is very simple to configure: simply place your Spring application context in
 `conf/application-context.xml`. When this module is installed Play will look at this location and
 construct a context to load Spring managed beans from. Alternatively you may specify a series of
 optional configuration parameters in `conf/application.conf` determining how the context is loaded.
@@ -32,10 +32,10 @@ optional configuration parameters in `conf/application.conf` determining how the
 If you need to load an alternative application-context file use the `spring.context` parameter. In
 addition there are two optional parameters controlling how the context is interpreted. By default
 play assumes the context uses namespaces which were introduced in Spring 2.0. If you do not need
-them or they are causing you problems you can turn off namespaces. The other option is to include
+them or they are causing you problems, you can turn off namespaces. The other option is to include
 Play configuration (i.e. items from conf/application.conf) using Spring's 
 PropertyPlaceholderConfigurer. This means that you can access play-based configuration within your
-spring context file by simple using `${ ... }`. 
+spring context file by simply using `${ ... }`. 
 
     spring.context = another-application-context.xml
     # Defaults to "application-context.xml"
