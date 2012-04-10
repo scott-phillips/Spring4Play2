@@ -6,8 +6,8 @@ original Spring Module for play 1.x, available on [Github](https://github.com/pe
 
 ## Install ##
 
-For the immediate future this plugin is available from an Texas A&M University's local unindexed
-Maven repository. In the future when then new modules site is ready at 
+For the immediate future this plugin is available from the Texas A&M University's local unindexed
+Maven repository. In the future when the new modules site is ready at 
 `http://modules.playframework.org` this plugin will be deployed there. Until then you can use A&M's
 local repository, but since it is not indexed by Maven Central you will need to add the repository
 explicitly in your sbt build configuration.
