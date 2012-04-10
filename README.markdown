@@ -2,8 +2,7 @@
 
 This module manages helps you integrate Spring managed beans directly within your play 2.0
 application. This module is a continuation of [Nicolas Leroux](https://github.com/pepite)'s
-original Spring Module for play 1.x, available at 
-[https://github.com/pepite/Play--framework-Spring-module](https://github.com/pepite/Play--framework-Spring-module)
+original Spring Module for play 1.x, available on [Github](https://github.com/pepite/Play--framework-Spring-module)
 
 ## Install ##
 
@@ -36,7 +35,7 @@ play assumes the context uses namespaces which were introduced in Spring 2.0. If
 them or they are causing you problems you can turn off namespaces. The other option is to include
 Play configuration (i.e. items from conf/application.conf) using Spring's 
 PropertyPlaceholderConfigurer. This means that you can access play-based configuration within your
-spring context file by simple using `${...}`. 
+spring context file by simple using `${ ... }`. 
 
     spring.context = another-application-context.xml
     # Defaults to "application-context.xml"
@@ -63,9 +62,9 @@ You can obtain Spring managed beans instances from within your play application 
     MyBean bean = Spring.getBeanOfType(MyBean.class);
     
     // Reference a set of beans by type
-    Map<String,MyBean> = Spring.getBeansOfType(MyBean.class);
+    Map<String,MyBean> beans = Spring.getBeansOfType(MyBean.class);
 
-See example project: https://github.com/scott-phillips/Spring4Play2/tree/master/samples/BasicSpringExample
+_See example project:_ https://github.com/scott-phillips/Spring4Play2/tree/master/samples/BasicSpringExample
 
 ### Component scanning & annotation-based configuration ###
 
@@ -80,7 +79,7 @@ elements. Here's an example:
     <context:annotation-config />
     <context:component-scan base-package="beans" />
 
-See example project: https://github.com/scott-phillips/Spring4Play2/tree/master/samples/AnnotationConfigExample
+_See example project:_ https://github.com/scott-phillips/Spring4Play2/tree/master/samples/AnnotationConfigExample
 
 ### Injecting dependencies into controllers ###
 
@@ -109,4 +108,4 @@ need to return a `play.mvc.Result` object for display. Using this example your n
     GET    /one     controllers.ControllerFactory.getControllerOne.index()
     GET    /two     controllers.ControllerFactory.getControllerTwo.index()
 
-See example project: https://github.com/scott-phillips/Spring4Play2/tree/master/samples/ControllerInjectionExample
+_See example project:_ https://github.com/scott-phillips/Spring4Play2/tree/master/samples/ControllerInjectionExample
