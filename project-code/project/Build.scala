@@ -5,7 +5,7 @@ import PlayProject._
 object ApplicationBuild extends Build {
 
     val appName         = "spring"
-    val appVersion      = "1.0-SNAPSHOT"
+    val appVersion      = "2.0"
 
     val appDependencies = Seq(
             "org.springframework"    %    "spring-context"    %    "3.0.7.RELEASE",

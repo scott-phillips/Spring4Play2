@@ -15,7 +15,7 @@ explicitly in your sbt build configuration.
 Add the dependency shown below on this module, along with the definition for TAMU's maven repository.
 
     val appDependencies = Seq(
-        "play" % "spring_2.9.1" % "1.1"
+        "play" % "spring_2.9.1" % "2.0"
     )
     
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = JAVA).settings(

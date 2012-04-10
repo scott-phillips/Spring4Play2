@@ -8,11 +8,11 @@ object ApplicationBuild extends Build {
     val appVersion      = "1.0-SNAPSHOT"
 
     val appDependencies = Seq(
-      "play" % "spring_2.9.1" % "1.0-SNAPSHOT"
+      "play" % "spring_2.9.1" % "2.0"
     )
 
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = JAVA).settings(
-        resolvers += "TAMU Snapshot Repository" at "https://maven.library.tamu.edu/content/repositories/snapshots/"
+        resolvers += "TAMU Release Repository" at "https://maven.library.tamu.edu/content/repositories/releases/"
     )
 
 }

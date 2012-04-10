@@ -33,7 +33,6 @@ public class SpringPlugin extends Plugin  {
     
     public SpringPlugin(play.api.Application app) {
     	super();
-    	Logger.debug("Spring plugin initialized");
     	this.app = new Application(app);
     }
     
@@ -57,9 +56,7 @@ public class SpringPlugin extends Plugin  {
     }
 
     @Override
-    public void onStart() {
-    	Logger.debug("Spring Plugin Starting");
-    	
+    public void onStart() {    	
     	String contextPath = app.configuration().getString(SPRING_CONTEXT_PATH);
     	String namespaceAware = app.configuration().getString(SPRING_NAMESPACE_AWARE);
     	String addPlayProperties = app.configuration().getString(SPRING_ADD_PLAY_PROPERTIES);
@@ -76,7 +73,6 @@ public class SpringPlugin extends Plugin  {
         if (url != null) {
             InputStream is = null;
             try {
-                Logger.debug("Starting Spring application context from "+url.toExternalForm());
                 applicationContext = new GenericApplicationContext();
                 applicationContext.setClassLoader(Play.application().classloader());
                 XmlBeanDefinitionReader xmlReader = new XmlBeanDefinitionReader(applicationContext);
@@ -110,7 +106,7 @@ public class SpringPlugin extends Plugin  {
                     configurer.setProperties(properties);
                     applicationContext.addBeanFactoryPostProcessor(configurer);
                 } else {
-                    Logger.debug("PropertyPlaceholderConfigurer with Play properties NOT added");
+                    Logger.debug("PropertyPlaceholderConfigurer with Play properties has NOT been added");
                 }
                 
                 is = url.openStream();
