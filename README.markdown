@@ -15,15 +15,13 @@ explicitly in your sbt build configuration.
 
 Add the dependency shown below on this module, along with the definition for TAMU's maven repository.
 
->
-> val appDependencies = Seq(
->     "play" % "spring_2.9.1" % "1.1"
-> )
->
-> val main = PlayProject(appName, appVersion, appDependencies, mainLang = JAVA).settings(
->     resolvers += "TAMU Release Repository" at "https://maven.library.tamu.edu/content/repositories/releases/"
-> )
->
+    val appDependencies = Seq(
+        "play" % "spring_2.9.1" % "1.1"
+    )
+    
+    val main = PlayProject(appName, appVersion, appDependencies, mainLang = JAVA).settings(
+        resolvers += "TAMU Release Repository" at "https://maven.library.tamu.edu/content/repositories/releases/"
+    )
 
 ## Configuration ##
 
@@ -40,16 +38,15 @@ Play configuration (i.e. items from conf/application.conf) using Spring's
 PropertyPlaceholderConfigurer. This means that you can access play-based configuration within your
 spring context file by simple using `${...}`. 
 
->
-> spring.context = another-application-context.xml
-> # Defaults to "application-context.xml"
->
-> spring.namespace-aware = true
-> # Defaults to true
-> 
-> spring.add-play-properties = true
-> # Defaults to true
->
+    spring.context = another-application-context.xml
+    # Defaults to "application-context.xml"
+    
+    spring.namespace-aware = true
+    # Defaults to true
+     
+    spring.add-play-properties = true
+    # Defaults to true
+    
 
 ## How To Use Play With Spring ##
 
@@ -57,18 +54,16 @@ spring context file by simple using `${...}`.
 You can obtain Spring managed beans instances from within your play application using the 
 `play.modules.spring.Spring` helper. 
 
->
-> import play.modules.spring.Spring
->
-> // Reference a bean by name
-> MyBean bean = Spring.getBean("byBeanName");
->
-> // Reference a bean by type
-> MyBean bean = Spring.getBeanOfType(MyBean.class);
->
-> // Reference a set of beans by type
-> Map<String,MyBean> = Spring.getBeansOfType(MyBean.class);
->
+    import play.modules.spring.Spring
+    
+    // Reference a bean by name
+    MyBean bean = Spring.getBean("byBeanName");
+    
+    // Reference a bean by type
+    MyBean bean = Spring.getBeanOfType(MyBean.class);
+    
+    // Reference a set of beans by type
+    Map<String,MyBean> = Spring.getBeansOfType(MyBean.class);
 
 See example project: https://github.com/scott-phillips/Spring4Play2/tree/master/samples/BasicSpringExample
 
@@ -82,10 +77,8 @@ framework is not magically manipulating the classpath. To enable annotation conf
 need to do is set up the appropriate spring context using the annotation-config and component-scan
 elements. Here's an example:
 
->
->    <context:annotation-config />
->    <context:component-scan base-package="beans" />
->
+    <context:annotation-config />
+    <context:component-scan base-package="beans" />
 
 See example project: https://github.com/scott-phillips/Spring4Play2/tree/master/samples/AnnotationConfigExample
 
@@ -100,23 +93,20 @@ of singlton/factory pattern for constructing controllers. Either with an explici
 factory or through a singleton pattern with static accessory method (i.e. getInstance()). For
 example using a `controllers.ControllerFactory` with two methods as shown:
 
->
-> public static ControllerOne getControllerOne() {
->     return Spring.getBeanOfType(ControllerOne.class);
-> }
->
-> public static ControllerTwo getControllerTwo() {
->     return Spring.getBeanOfType(ControllerTwo.class);
-> }
->
+    public static ControllerOne getControllerOne() {
+        return Spring.getBeanOfType(ControllerOne.class);
+    }
+    
+    public static ControllerTwo getControllerTwo() {
+        return Spring.getBeanOfType(ControllerTwo.class);
+    }
 
 The factory will produce controller instances that must inherit from Play's
 `play.mvc.Controller` class. However the action methods do not need to remain static, they just
 need to return a `play.mvc.Result` object for display. Using this example your need to modify your
 `conf/routes` file to accommodate the ControllerFactory, as shown below: 
-> 
-> GET    /one     controllers.ControllerFactory.getControllerOne.index()
-> GET    /two     controllers.ControllerFactory.getControllerTwo.index()
-> 
+
+    GET    /one     controllers.ControllerFactory.getControllerOne.index()
+    GET    /two     controllers.ControllerFactory.getControllerTwo.index()
 
 See example project: https://github.com/scott-phillips/Spring4Play2/tree/master/samples/ControllerInjectionExample
