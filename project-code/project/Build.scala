@@ -6,7 +6,7 @@ object ApplicationBuild extends Build {
 
     val userName        = System.getProperty("user.name")
     val appName         = "spring"
-    val appVersion      = "2.2.1"
+    val appVersion      = "2.2.3"
 
     val appDependencies = Seq(
             "org.springframework"    %    "spring-context"    %    "3.0.7.RELEASE",

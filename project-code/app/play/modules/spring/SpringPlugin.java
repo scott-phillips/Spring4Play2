@@ -19,7 +19,12 @@ import play.Application;
 
 public class SpringPlugin extends Plugin  {
 
-	/** Configuration keys **/
+    /**
+     * System property keys
+     */
+    public static final String SYSTEM_PROPERTY_SPRING_CONTEXT_PATH = "system.application.context";
+
+    /** Configuration keys **/
     private static final String SPRING_CONTEXT_PATH = "spring.context";
     private static final String SPRING_NAMESPACE_AWARE = "spring.namespace-aware";
     private static final String SPRING_ADD_PLAY_PROPERTIES = "spring.add-play-properties";
@@ -59,8 +64,13 @@ public class SpringPlugin extends Plugin  {
     @Override
     public void onStart() {
     	Logger.debug("Spring Plugin Starting");
-    	
-    	String contextPath = app.configuration().getString(SPRING_CONTEXT_PATH);
+
+        String contextPath = System.getProperty(SYSTEM_PROPERTY_SPRING_CONTEXT_PATH);
+
+        if(contextPath == null || contextPath.isEmpty()){
+            contextPath = app.configuration().getString(SPRING_CONTEXT_PATH);
+        }
+
     	String namespaceAware = app.configuration().getString(SPRING_NAMESPACE_AWARE);
     	String addPlayProperties = app.configuration().getString(SPRING_ADD_PLAY_PROPERTIES);
     	
