@@ -1,11 +1,12 @@
 import sbt._
 import Keys._
-import PlayProject._
+import play.Project._
 
 object ApplicationBuild extends Build {
 
+    val userName        = System.getProperty("user.name")
     val appName         = "spring"
-    val appVersion      = "1.0-SNAPSHOT"
+    val appVersion      = "2.2.3"
 
     val appDependencies = Seq(
             "org.springframework"    %    "spring-context"    %    "3.0.7.RELEASE",
@@ -13,16 +14,10 @@ object ApplicationBuild extends Build {
             "org.springframework"    %    "spring-beans"      %    "3.0.7.RELEASE"
     )
 
-    val main = PlayProject(appName, appVersion, appDependencies, mainLang = JAVA).settings(
+    val main = play.Project(appName, appVersion, appDependencies).settings(
         organization := "play",
-        publishMavenStyle := true,
-        publishTo <<= (version) { version: String =>
-            val nexus = "https://maven.library.tamu.edu/content/repositories/"
-            if (version.trim.endsWith("SNAPSHOT")) 
-                Some("TAMU Snapshot Repository" at nexus + "snapshots/") 
-            else                                   
-                Some("TAMU Release Repository"  at nexus + "releases/")
-           },
-        credentials += Credentials(file(Path.userHome + "/.mavenCredentials"))
+        //publishMavenStyle := true,
+        publishTo := Some(Resolver.ssh("IMIS Maven2 Repository SSH", "ez.imis.intra", "/var/www/maven2/")
+                            (Resolver.mavenStylePatterns) as(userName) withPermissions("0664"))
     )
 }
